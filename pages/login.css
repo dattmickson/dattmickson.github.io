@@ -1,0 +1,28 @@
+#header{
+	background-color: #2196F3;
+	width: 100%;
+	height: 100px;
+	border-radius: 50px;
+}
+#headerName {
+	color: black;
+	text-align: center;	
+	margin-top: 30px;
+}
+#logo {
+	width: 80px;
+	height: 80px;
+	margin: 10px;
+	vertical-align: middle;
+}
+#nav {
+	width:100%;
+	height: 25px;
+	text-align: center;
+	border-style: groove;
+	border-color: #2196F3;
+	border-radius: 15px;
+}
+#navTable{
+  width:100%;
+}

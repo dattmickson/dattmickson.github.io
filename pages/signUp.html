@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="signUp.css">
+</head>
+<body>
+	<header id="header">
+		
+		<!--title-->
+
+			<h1 id="headerName" >Lacrosse Equipment Store
+				<img id="logo" src="../img/logo1.png"/>
+			</h1>	
+
+	</header>
+
+	<br/>
+	<!--nav bar-->
+	<nav id="nav">
+		
+		<table id="navTable">
+			<tr>
+				<th><a href="../../storeApp/index.html">Home</a></th>
+				<th><a href="login.html">Login</a></th>
+				<th><a href="signup.html">SignUp</a></th>
+				<th><a href="contact.html">Contact Us</a></th>
+			</tr>
+		</table>
+
+		<!-- <div id="nav1">
+			<a href="">HTML</a>
+			<a href="">CSS</a>
+			<a href="">JavaS</a>
+			<a href="">jQuery</a>
+		</div> -->
+	</nav>
+
+	<form>
+		<label>Enter E-mail</label>
+		<br/>
+		<input id="email" type="text" name="email">
+		<br/>
+		<label>Enter desired user-name</label>
+		<br/>
+		<input id="userName" type="text" name="userName">
+		<br/>
+		<label> Enter desired Password</label>
+		<br/>
+		<input id="password" type="text" name="password">
+		<br/>
+		<label>Re-enter your password</label>
+		<br/>
+		<input id="password2" type="text" name="passowrd2">
+	</form>
+	<br/>
+	<button id="submit" onclick="welcome()">Submit</button>
+	<script>
+		function welcome() {
+			var email = document.getElementById("email").value;
+			var userName = document.getElementById("userName").value;
+			var password = document.getElementById("password").value;
+			var password2 = document.getElementById("password2").value;
+			if(email === "" || userName === "" || password === "" || password2 === "") {
+				alert("Please complete the entire form before submitting");
+			} else if (password !== password2) {
+				alert("Your passwords do not match, please try again");
+			} else {
+				alert("Welcome to our website '" + userName + "', have fun shopping!");
+			}
+		}
+	</script>
+
+</body>
+</html>

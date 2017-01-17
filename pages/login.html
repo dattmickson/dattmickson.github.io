@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+	<header id="header">
+		
+		<!--title-->
+
+			<h1 id="headerName" >Lacrosse Equipment Store
+				<img id="logo" src="../img/logo1.png"/>
+			</h1>	
+
+	</header>
+
+	<br/>
+	<!--nav bar-->
+	<nav id="nav">
+		
+		<table id="navTable">
+			<tr>
+				<th><a href="../../storeApp/index.html">Home</a></th>
+				<th><a href="login.html">Login</a></th>
+				<th><a href="signUp.html">SignUp</a></th>
+				<th><a href="contact.html">Contact Us</a></th>
+			</tr>
+		</table>
+
+		<!-- <div id="nav1">
+			<a href="">HTML</a>
+			<a href="">CSS</a>
+			<a href="">JavaS</a>
+			<a href="">jQuery</a>
+		</div> -->
+	</nav>
+
+	<!--sign up-->
+	<form>
+		<label>User Name</label>
+		<br/>
+		<input id="userName" type="text" name="userName">
+		<br/>
+		<label>Password</label>
+		<br/>
+		<input id="password" type="text" name="password">
+	</form>
+	<br/>
+	<button id="submit" onclick="wrong()">Submit</button>
+	<script>
+		function wrong() {
+			alert("We do not recognize this user name or password, please try again")
+		}
+	</script>
+
+
+</body>
+</html>
