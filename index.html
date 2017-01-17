@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<title>Lax Store</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+<!-- 	<script type="text/javascript" src="index.js"></script>
+ -->	
+ 	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="responsiveslides.js"></script> -->
+
 </head>
 <body>
 	
@@ -12,7 +18,7 @@
 		<!--title-->
 
 			<h1 id="headerName" >Lacrosse Equipment Store
-				<img id="logo" src="img/sample.png"/>
+				<img id="logo" src="img/logo1.png"/>
 			</h1>	
 
 	</header>
@@ -20,12 +26,22 @@
 	<br/>
 	<!--nav bar-->
 	<nav id="nav">
-		<div id="nav1">
+		
+		<table id="navTable">
+			<tr>
+				<th><a href="">HTML</a></th>
+				<th><a href="">CSS</a></th>
+				<th><a href="">JavaS</a></th>
+				<th><a href="">jQuery</a></th>
+			</tr>
+		</table>
+
+		<!-- <div id="nav1">
 			<a href="">HTML</a>
 			<a href="">CSS</a>
 			<a href="">JavaS</a>
 			<a href="">jQuery</a>
-		</div>
+		</div> -->
 	</nav>
 
 	<br/>
@@ -33,18 +49,106 @@
 	<!--specials, roll through pictures-->
 	<section id="mainArea">
 		<button id="button1"><--</button>
-		<img  id="mainPic" src="img/wide_sample.jpg" align="middle"/>
+		<img  id="mainPic" src="img/main.jpg" align="middle"/>
 		<button id="button2">--></button>
+
+		<!-- <ul class="rslides">
+ 			<li><img src="img/1.jpg" alt=""></li>
+  			<li><img src="img/2.jpg" alt=""></li>
+  			<li><img src="img/3.jpg" alt=""></li>
+		</ul>
+ -->
 	</section>
 
 	<!--various items-->
-	<section>
+	<section class="itemOptions">
 		
 		<!--item1-->
-		<div></div>
+		<div id="headSection">
+			<table id="heads">
+				<caption id="tableTitle"><h2>Helmets</h2></caption>
+				<tr>
+					<th>Black</th>
+					<th>White</th>
+					<th>Silver</th>
+				</tr>
+				<tr>
+					<th><img  id="item1" src="img/helmet1.gif"></th>
+					<th><img  id="item1" src="img/helmet2.jpg"></th>
+					<th><img  id="item1" src="img/helmet4.jpg"></th>
+				</tr>
+				<tr>
+					<th>Price: $250</th>
+					<th>Price: $200</th>
+					<th>Price: $150</th>
+				</tr>
+			</table>
+		</div>
 
 		<!--item2-->
-		<div></div>
+		<div id="stickSection">
+			<table id="heads">
+				<caption id="tableTitle"><h2>Sticks</h2></caption>
+				<tr>
+					<th>Attack Stick</th>
+					<th>Defense Stick</th>
+					<th>Goalie Stick</th>
+				</tr>
+				<tr>
+					<th><img  id="item1" src="img/stick1.jpg"></th>
+					<th><img  id="item1" src="img/stick2.jpg"></th>
+					<th><img  id="item1" src="img/stick3.jpg"></th>
+				</tr>
+				<tr>
+					<th>Price: $75</th>
+					<th>Price: $100</th>
+					<th>Price: $100</th>
+				</tr>
+			</table>
+		</div>
+		<!--item3-->
+		<div id="padSection">
+			<table id="heads">
+				<caption id="tableTitle"><h2>Pads</h2></caption>
+				<tr>
+					<th>Shoulder Pads</th>
+					<th>Elbow Pads</th>
+					<th>Gloves</th>
+				</tr>
+				<tr>
+					<th><img  id="item1" src="img/pad1.jpg"></th>
+					<th><img  id="item1" src="img/pad2.jpg"></th>
+					<th><img  id="item1" src="img/pad3.jpg"></th>
+				</tr>
+				<tr>
+					<th>Price: $80</th>
+					<th>Price: $45</th>
+					<th>Price: $75</th>
+				</tr>
+			</table>
+		</div>
+		<!--item4-->
+		<div id="apparelSection">
+			<table id="heads">
+				<caption id="tableTitle"><h2>Apparel</h2></caption>
+				<tr>
+					<th>Hat</th>
+					<th>Sweatshirt</th>
+					<th>Equipment Bag</th>
+				</tr>
+				<tr>
+					<th><img  id="item1" src="img/ap1.jpg"></th>
+					<th><img  id="item1" src="img/ap2.jpg"></th>
+					<th><img  id="item1" src="img/ap3.jpg"></th>
+				</tr>
+				<tr>
+					<th>Price: $20</th>
+					<th>Price: $35</th>
+					<th>Price: $65</th>
+				</tr>
+			</table>
+		</div>
+
 
 	</section>
 
@@ -52,20 +156,33 @@
 
 	<!--news-->
 	<article id="news">
-		<header id="newsHeader"><h3>BIG NEWS<h3></header>
+		
 		<section>
+			<header id="newsHeader"><h3>BIG NEWS<h3></header>
 			<div>
-				<img src="img/sample.png" id="person" align="left" />
-				<p>"The lacrosse equipment store has all the best gear, I come here whenever I need top quality goods. Best of all, its always next day delivery! Would highly Recommend!" 
+				<img src="img/paulRabil.jpg" id="person" align="left" />
+				<p>"The Lacrosse Equipment Store has all the best gear, I come here whenever I need top quality goods. Best of all, its always next day delivery! Would highly Recommend!" 
 				-- Paul Rabil look-a-like</p>
 			</div>
 			<hr/>
 			<div>
-				<img src="img/sample.png" id="customer" align="left" />
+				<img src="img/logo1.png" id="customer" align="left" />
+				<p>As a special thanks to all of our customers this holiday season contributing to our record sales, we will be offering 25% off for the rest of the year!!</p>
+			</div>
+			<hr/>
+			<div>
+				<img src="img/tony.jpg" id="customer" align="left" />
 				<p>Huge congratulations goes out to Tony! He has won our customer of the Year!! Contributing to over half of our sales, he makes a big impact on our store!</p>
 			</div>
+			<hr/>
+			<hr/>
+			<hr/>
+			<header id="newsHeader"><h3>About Us<h3></header>
+			<div style= "margin: 10px"><p>" Our mission as a lacrosse equipment supplying company is to grow the game by any means necesary. Even if all we can do is offer incredibly low prices and offer next day shipping, we think that it still makes a big impact. We are a team of manufacturers who make and ship everything we sell thats why we have the best prices around. We also have recently added to our team, a real up and commer in the coding industry, he recently redesigned our entire website. Without him our company would mearly be a nonexsistant idea rather than a real life fake store." --Company CEO </p></div>;
 		</section>
 	</article>
+
+
 
 
 
@@ -73,6 +190,33 @@
 	<footer align="bottom" id="footer">
 		<p>thanks for shopping</p>
 	</footer>
+
+	
+<!-- js for img slide-->
+	<!-- <script>
+  		$(function() {
+			$(".rslides").responsiveSlides({
+			  auto: false,             // Boolean: Animate automatically, true or false
+			  speed: 500,            // Integer: Speed of the transition, in milliseconds
+			  timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+			  pager: false,           // Boolean: Show pager, true or false
+			  nav: true,             // Boolean: Show navigation, true or false
+			  random: false,          // Boolean: Randomize the order of the slides, true or false
+			  pause: false,           // Boolean: Pause on hover, true or false
+			  pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+			  prevText: "Previous",   // String: Text for the "previous" button
+			  nextText: "Next",       // String: Text for the "next" button
+			  maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+			  navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+			  manualControls: "",     // Selector: Declare custom pager navigation
+			  namespace: "centered-btns",   // String: Change the default namespace used
+
+			  before: function(){},   // Function: Before callback
+			  after: function(){}     // Function: After callback
+			});  		
+		});
+	</script> -->
+
 
 </body>
 </html>
