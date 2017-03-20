@@ -1,0 +1,179 @@
+var jq = document.createElement('script');
+jq.type = 'text/javascript';
+jq.async = true;
+jq.src = "https://code.jquery.com/jquery-2.2.1.min.js";
+document.head.appendChild(jq);
+jq.onload = function() {
+	(function($){
+		// ********** START HELPGIZMO WIDGET CLASS ********** //
+		var HelpGizmoWidget = function(){
+			this.api = '//pluralsight.knowledgeowl.com/javascript/';
+			this.renderWidget();
+			this.listen();
+			this.trunc = function(str,num){
+				if(!str) return;
+				return str.substr(0, num - 1) + (str.length > num ? '...' : '');
+			};
+		};	
+	
+		HelpGizmoWidget.prototype.listen = function(){
+			var self = this;
+			$('#hg-widget-close').on('click', function(){
+				__hg._icon_clicked();
+			});
+			$('#helpgizmo-widget-css').on('load', function(){
+				if($('#helpgizmo-container').hasClass('hg-container-left_center')){
+					var containerWidth = parseInt($('#helpgizmo-container').width() / 2, 10);
+					$('#helpgizmo-container').css('margin-left', '-' + containerWidth + 'px');
+				} else if ($('#helpgizmo-container').hasClass('hg-container-bottom_center') || $('#helpgizmo-container').hasClass('hg-container-top_center')) {
+					var percentUsed = (parseFloat($('#helpgizmo-container').width() / $(document).width()) * 100);
+					var right = parseFloat((100 - percentUsed) / 2).toFixed(2);
+					$('#helpgizmo-container').css('right', right + '%');
+				} else if ($('#helpgizmo-container').hasClass('hg-container-right_center')) {
+					var containerWidth = parseInt($('#helpgizmo-container').width() / 2, 10) - 5;
+					$('#helpgizmo-container').css('margin-right', '-' + containerWidth + 'px');
+				}
+				
+							});
+		};
+		// ********** START HELPGIZMO CLASS ********** //	
+		var _helpgizmo = function() { };
+		//Initialize the page trackign code
+		_helpgizmo.prototype.init = function(){
+			if(typeof _helpgizmo_p == "undefined") { _helpgizmo_p = []; } 
+			while(calldata = _helpgizmo_p.shift())
+			{
+				var fn = calldata.shift();
+				this[fn].apply(this,calldata);
+			}
+			this._initHelp();
+		}
+		//Set the Account and Project Code for the HelpGizmo Customer
+		_helpgizmo.prototype._setProject = function(){
+			this._pc = arguments[0];		
+		}
+		//Sets a custom fields to push to HG with each request. Used for conditional snippets
+		_helpgizmo.prototype._setCustomVar = function() {
+			this._cdata = this._cdata || [];
+			this._cdata.push( { name: arguments[0], value: arguments[1] } );		
+		}
+		_helpgizmo.prototype._initHelp = function() {
+							this.container = $('#ko-widget');
+				this.container.click( function(e) { e.preventDefault();  __hg._icon_clicked(); } );
+					}
+		//convert array to JSON
+		_helpgizmo.prototype.stringify = function(obj) 
+		{  
+		    var t = typeof (obj);  
+		    if (t != "object" || obj === null) {  
+		        // simple data type  
+		        if (t == "string") obj = '"'+obj+'"';  
+		        return String(obj);  
+		    }  
+		    else {  
+		        // recurse array or object  
+		        var n, v, json = [], arr = (obj && obj.constructor == Array);  
+		        for (n in obj) {  
+		            v = obj[n]; t = typeof(v);  
+		            if (t == "string") v = '"' + v + '"';  
+		            else if (v instanceof Array && v !== null) v = this.stringify(v);
+		            else continue;  
+		            json.push((arr ? "" : '"' + n + '":') + String(v));  
+		        }  
+		        return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");  
+		    }  
+		};
+		//Create a cookie
+		_helpgizmo.prototype.create_cookie = function(name,value,days){
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime()+(days*24*60*60*1000));
+				var expires = "; expires="+date.toGMTString();
+			}
+			else var expires = "";
+			document.cookie = name+"="+value+expires+"; path=/; secure";
+		}
+		//Read a cookie
+		_helpgizmo.prototype.read_cookie = function(name){
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			}
+			return null;
+		}
+		HelpGizmoWidget.prototype.makeRequest = function(method, callback){
+			method = method || '';
+			callback = callback || function(){};
+			dataparams = __hg._cdata || {};
+			dataparams = '&key=&__cd=' + escape($.param(dataparams));
+	
+			$.ajax({
+				url : this.api + method  + dataparams + '&callback=?',
+				dataType : 'jsonp', 
+				success : function(res){
+					
+					callback(res);
+				},
+				error : function(msg){
+					console.log(msg);
+				}
+			})
+		};
+		HelpGizmoWidget.prototype.renderWidget = function(){
+			$('head').append('<link id="helpgizmo-widget-css" rel="stylesheet" href="//' + 'pluralsight.knowledgeowl.com/css/widget_min_12_1_16.css" type="text/css" />');
+			this.makeRequest( 'widget?__pc=' + __hg._pc, function(res){ $('body').append(res.data); HelpGizmoWidget.prototype.listen(); });
+		};
+		
+		//Click on the HG Documentor icon
+		_helpgizmo.prototype._icon_clicked = function(){
+			var suggestURL = 'path';
+			dataparams = this._cdata || {};
+			dataparams = '&__cd=' + escape($.param(dataparams));
+			var path = window.location.href;
+		    
+		    if(suggestURL == 'qstring') {
+			    path = path.split('?')[1];
+			} else {
+				path = path.replace("http://", '');
+				path = path.replace("https://", '');
+				path = '/' + path.replace(/^(.+?)\//, '');
+			    path = path.split('?')[0];
+			    var killPos = false;
+			    for(var i=0;i < path.length;i++) {
+			      if(path[i] == '#' && killPos === false)
+			        killPos = i;
+			   	  else if(path[i] == '/' && killPos !== false)
+			        killPos = false;
+			    }
+			    if(killPos !== false)
+			      path = path.slice(0, killPos);
+			}
+					      
+			var loc = __hg._lc || path;
+			var src = __hgwidget.api + 'contact?__loc=' + escape(loc) + '&__pc=' + __hg._pc + '&type=article&key=' + dataparams;
+			$('body').toggleClass('hg-modal-shown');
+			$('#hg-widget-iframe').attr('src', src);
+			$('#hg-widget-backdrop').toggleClass("hg-fade").toggleClass("hg-in");
+			$('#hg-widget-modal').toggleClass("hg-fade").toggleClass("hg-in");
+		}
+		//Delete a cookie
+		_helpgizmo.prototype.erase_cookie = function(name) 
+		{
+			this.create_cookie(name,"",-1);
+		}	
+	
+		// ********** END HELPGIZMO CLASS ********** //
+		//On doc ready, initialize all the embeds
+		
+		$(document).ready(function() {
+			__hg = new _helpgizmo();
+			__hg.init();
+			__hgwidget = new HelpGizmoWidget();
+		});
+	})(jQuery);
+	
+	jQuery.noConflict(true);
+}
